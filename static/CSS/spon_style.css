@@ -1,0 +1,44 @@
+h2{
+    margin-top: 0%;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.dash {
+    width: 100%;
+    height: 100vh;
+    padding-bottom: 10%;
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('../IMG/Spon-dash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.body{
+    padding-top: 2%;
+    border: 3px groove white;
+    border-radius: 45px;
+    background-image: linear-gradient(rgba(209, 209, 209, 0.426),rgba(189, 189, 189, 0.453)),url('../IMG/login1.jpg');
+    opacity: 0.8;
+    margin-left:290px;
+    margin-right:290px;
+}
+
+table{
+    margin-left: 300px;
+    padding: 10px;
+
+}
+td{
+    padding: 10px;
+}
+p{
+    margin-left: 340px;
+    padding: 10px;
+}
+.header{
+    color: #FFFFFF;
+    text-align: center;
+    justify-content: space-between;
+}

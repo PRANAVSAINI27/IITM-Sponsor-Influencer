@@ -1,0 +1,24 @@
+form{
+    padding: 5px;
+    margin-top: 3%;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: rgba(224, 224, 224, 0.679);
+    text-align: center;
+}
+
+h2{
+    margin-top: 3%;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    width: 95%;
+    height: 96vh;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('../IMG/login1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
