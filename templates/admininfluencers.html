@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Influencers</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/admin_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Admin Dashboard</h2>
+        <p style="text-align:right">
+            <a href="http://127.0.0.1:5000/admin_profile/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_influencers/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Influencers</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_campaigns/{{USER}}" methods="post">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Campaigns</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_sponsors/{{USER}}" methods="post">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Sponsors</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/logout">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+            </a>&emsp;
+        </p></p>
+</div>
+<div class="body">
+    <h2>INFLUENCERS</h2>
+    <table>
+        <tr>
+            <th>Influencer Name</th>
+            <th>Email ID</th>
+            <th>Username</th>
+            <th>Category</th>
+            <th>Position</th>
+            <th>Reach</th>
+        </tr>
+        {% for fname, lname, email, uname, category, position, reach, flag in RESULT %}
+        <tr>
+            <td>{{fname}}&nbsp;{{lname}}</td>
+            <td>{{email}}</td>
+            <td>{{uname}}</td>
+            <td>{{category}}</td>
+            <td>{{position}}</td>
+            <td>{{reach}}</td>
+            <form id="form1" action="http://127.0.0.1:5000/admin_save_influencers/{{USER}}" method="post">
+                {% if flag=="YES" %}
+                    <td><button style="padding:2px;" type="submit" name="rflag" value="{{uname}}">Unflag User</button></td>
+                {% else %}
+                    <td><button style="padding:2px;" type="submit" name="flag" value="{{uname}}">Flag User</button></td>
+                {% endif %}
+                <td><button style="padding:2px;" type="submit" name="del" value="{{uname}}">Delete User</button></td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</html>

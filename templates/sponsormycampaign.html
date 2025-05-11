@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Campaign</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/spon_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Sponsor Dashboard</h2>
+        <p style="text-align:right">
+            <a href="http://127.0.0.1:5000/sponsor_profile/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/sponsor_mycampaign/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">My Campaigns</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/sponsor_createcampaign/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Create Campaign</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/sponsor_requests/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Requests</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/logout">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+            </a>&emsp;
+        </p></p>
+</div>
+<div class="body">
+    <h2>MY CAMPAIGNS</h2>
+    <table>
+        <tr>
+            <th>Campaign Name</th>
+            <th>Description</th>
+            <th>End Date</th>
+            <th>Budget</th>
+            <th>Visibility</th>
+            <th>Influencer Name</th>
+        </tr>
+        {% for name, description, enddate, budget, visibility, influencername, flag in RESULT %}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+            <td>{{enddate}}</td>
+            <td>{{budget}}</td>
+            <td>{{visibility}}</td>
+            {% if influencername == "" and flag!="YES" %}
+                <form id="form" action="http://127.0.0.1:5000/sponsor_save_mycampaign/{{USER}}" method="post">
+                    <td>
+                        <select style="width : 180px;" name="influencer" >
+                            <option value="">Choose Influencer</option>
+                        {% for fname, lname, email, username, category, position, reach,flagres in RES %}
+                        {% if flagres!="YES" %}
+                        <option value="{{username}}"><p>{{fname}}&ensp;{{lname}}</p>
+                            <p>Username - {{username}}</p>
+                            <p>Email ID - {{email}}</p>
+                            <p>Category - {{category}}&ensp; Position - {{position}}</p>
+                            <p>Reach - {{reach}}</p>
+                        </option>
+                        {% endif %}
+                        {% endfor %}
+                        </select>
+                    </td>
+                    <td><button style="padding:2px;" type="submit" name="cname" value="{{name}}">Assign Influencer</button></td>
+                    <td><button style="padding:2px;" type="submit" name="del" value="{{name}}">Delete Campaign</button></td>
+                </form>
+            {% elif flag!="YES" and influencername!=""%}
+                <form id="form" action="http://127.0.0.1:5000/sponsor_save_mycampaign/{{USER}}" method="post">
+                    <td>{{influencername}}</td>
+                    <td><button style="padding:2px;" type="submit" name="rinfluencer" value="{{name}}">Remove Influencer</button></td>
+                    <td><button style="padding:2px;" type="submit" name="del" value="{{name}}">Delete Campaign</button></td>
+                </form>
+            {% else %}
+            <td>Campaign is Flagged</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div></div>
+</html>

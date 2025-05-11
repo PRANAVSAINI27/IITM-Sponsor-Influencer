@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Influencer Login</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/login.css')}}">
+</head>
+<body>
+<p><h2>INFLUENCER LOGIN</h2></p>
+<form action="http://127.0.0.1:5000/influencer_dashboard" method="post">
+    <p>Influencer Username</p><p><input type="text" name="uname"></p>
+    <p>Password</p><p><input type="password" name="spass"></p>
+    <p><button style="padding:5px;" type="submit">Submit</button></p>
+</form>
+</body>
+</html>

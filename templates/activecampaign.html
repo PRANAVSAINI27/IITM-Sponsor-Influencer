@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Active Campaign</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/inf_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Influencer Dashboard</h2></p>
+    <p style="text-align:right;">
+        <a href="http://127.0.0.1:5000/influencer_profile/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/active_campaign/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Active Campaigns</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/influencer_requests/{{USER}}" methods="post">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Requests</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/logout">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+        </a>&emsp;
+    </p>
+</div>
+<div class="body">
+    <h2>ACTIVE CAMPAIGNS</h2>
+    <table>
+        <tr>
+            <th>Sponsor Name</th>
+            <th>Campaign Name</th>
+            <th>Description</th>
+            <th>End Date</th>
+            <th>Budget</th>
+            <th>Request</th>
+            <th>Status</th>
+        </tr>
+        {% for sname, name, description, enddate, budget,flag, status in DETAILS %}
+        {% if status=="Pending" or status==" " or status=="" %}
+        <tr>
+            {% if flag!="YES" %}
+            <td>{{sname}}</td>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+            <td>{{enddate}}</td>
+            <td>{{budget}}</td>
+                {% if RES=="YES" %}
+                    <td>You are Flagged</td>
+                {% elif RES!="YES" %}
+                    <td>
+                        <form action="http://127.0.0.1:5000/influencer_request_campaign/{{USER}}" method="post">
+                            <button style="padding:5px;" type="submit" value="{{name}}" name="{{sname}}">Request Campaign</button>
+                        </form>
+                    </td>
+                {% endif %}
+            {% endif %}
+            <td>{{status}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
+</div>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sponsor Registration</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/login.css')}}">
+</head>
+<body>
+<h2>SPONSOR REGISTRATION</h2>
+<form action="http://127.0.0.1:5000/ssuccess" method="post">
+    <p>Company Name</p><p><input type="text" name="cname"></p>
+    <p>Company Username</p><p><input type="text" name="uname"></p>
+    <p>Email ID</p><p><input type="text" name="semail"></p>
+    <p>Password</p><p><input type="password" name="spassword"></p>
+    <p>Industry</p><p><input type="text" name="industry"></p>
+    <p><button style="padding:5px;" type="submit">Submit</button></p>
+</form>
+</body>
+</html>

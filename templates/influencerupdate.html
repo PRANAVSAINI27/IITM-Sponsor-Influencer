@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Influencer Update</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/style.css')}}">
+</head>
+<div class="dash">
+    <div class="header">
+        <p><h2>Influencer Dashboard</h2></p>
+        <p style="text-align:right;">
+            <a href="http://127.0.0.1:5000/influencer_profile/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/active_campaign/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Active Campaigns</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/influencer_requests/{{USER}}" methods="post">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Requests</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/logout">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+            </a>&emsp;
+        </p>
+    </div>
+<div class="body">
+    <h2>Update Influencer</h2>
+    <form action="http://127.0.0.1:5000/save_update_influencer/{{USER}}" method="post">
+        <table>
+        <tr><td>First Name</td><td><input type="text" name="fname" value="{{FNAME}}"></td></tr>
+        <tr><td>Last Name</td><td><input type="text" name="lname" value="{{LNAME}}"></td></tr>
+        <tr><td>Username</td><td><input type="text" name="username" value="{{USERNAME}}"></td></tr>
+        <tr><td>Email ID</td><td><input type="text" name="email" value="{{EMAIL}}"></td></tr>
+        <tr><td>Password</td><td><input type="password" name="password" value="{{PASSWORD}}"></td></tr>
+        <tr><td>Category</td><td><input type="text" name="category" value="{{CATEGORY}}"></td></tr>
+        <tr><td>Position</td><td><input type="text" name="position" value="{{POSITION}}"></td></tr>
+        <tr><td>Reach</td><td><input type="text" name="reach" value="{{REACH}}"></td></tr>
+        </table>
+        {% if FLAG!="YES" %}
+            <button style="padding:5px;margin-left: 50%;margin-bottom: 20px;" type="submit">Submit</button>
+        {% else %}
+            <p style="margin-left: 46%;">User is Flagged</p>
+        {% endif %}
+    </form>
+</div>
+</div>
+</html>

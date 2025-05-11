@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sponsor Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/spon_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Sponsor Dashboard</h2>
+    <p style="text-align:right">
+        <a href="http://127.0.0.1:5000/sponsor_profile/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/sponsor_mycampaign/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">My Campaigns</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/sponsor_createcampaign/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Create Campaign</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/sponsor_requests/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Requests</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/logout">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+        </a>&emsp;
+    </p></p>
+</div>
+<div class="body">
+    <h2 style="text-align:center;">Profile</h2>
+    {% if FLAG=="YES" %}
+        <p style="margin-left: 370px;">USER IS FLAGGED</p>
+    {% endif %}
+    <p>Company Name&emsp;&ensp;: {{COMPANY_NAME}}</p>
+    <p>Company Username: {{COMPANY_USERNAME}}</p>
+    <p>Email ID&emsp;&emsp;&emsp;&emsp;&nbsp;: {{EMAIL_ID}}</p>
+    <p>Password&emsp;&emsp;&emsp;&emsp;: {{PASSWORD}}</p>
+    <p>Industry&emsp;&emsp;&emsp;&emsp;&ensp;: {{INDUSTRY}}</p>
+    {% if FLAG!="YES" %}
+    <a href="http://127.0.0.1:5000/update_sponsor/{{USER}}"><button style="background-color:#0088CB;margin-left: 390px;;margin-bottom:10px;" type="button">Click to Update Profile</button></a>
+    {% endif %}
+</div></div>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Influencer Request</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/inf_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Influencer Dashboard</h2></p>
+    <p style="text-align:right;">
+        <a href="http://127.0.0.1:5000/influencer_profile/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/active_campaign/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Active Campaigns</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/influencer_requests/{{USER}}" methods="post">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Requests</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/logout">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+        </a>&emsp;
+    </p>
+</div>
+<div class="body">
+    <h2 style="align-text: center;">CAMPAIGNS REQUESTS</h2>
+    <table>
+        <tr>
+            <th>Campaign Name</th>
+            <th>Campaign Description</th>
+            <th>End Date</th>
+            <th>Budget</th>
+            <th>Sponsor Username</th>
+        </tr>
+        {% for cname, desc, date, budget,flag, suname, status,per in DETAILS %}
+        <tr>
+            {% if status=="Pending" and per=="S"%}
+            <td>{{cname}}</td>
+            <td>{{desc}}</td>
+            <td>{{date}}</td>
+            <td>{{budget}}</td>
+            <td>{{suname}}</td>
+            <td>{{status}}</td>
+            {% if flag!="YES" %}
+            <td>
+                <form action="http://127.0.0.1:5000/influencer_save_requests/{{USER}}" method="post">
+                    <button style="padding:5px;" type="submit" value="ACCEPT" name="{{cname}}">ACCEPT</button>
+                </form>
+            </td>
+            <td>
+                <form action="http://127.0.0.1:5000/influencer_save_requests/{{USER}}" method="post">
+                    <button style="padding:5px;" type="submit" value="DECLINE" name="{{cname}}">DECLINE</button>
+                </form>
+            </td>
+            {% else %}
+                <td>Campaign is Flagged</td>
+            {% endif %}
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    <table>
+        <h2>Accepted Campaigns</h2>
+        <tr>
+            <th>Campaign Name</th>
+            <th>Campaign Description</th>
+            <th>End Date</th>
+            <th>Budget</th>
+            <th>Sponsor Username</th>
+        </tr>
+        {% for cname, desc, date, budget,flag, suname, status,per in DETAILS %}
+            {% if status=="ACCEPT" %}
+            <tr>
+                <td>{{cname}}</td>
+                <td>{{desc}}</td>
+                <td>{{date}}</td>
+                <td>{{budget}}</td>
+                <td>{{suname}}</td>
+                {% if flag=="YES" %}
+                    <td>Campaign is flagged</td>
+                {% endif %}
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    <table>
+        <h2>Declined Campaigns</h2>
+        <tr>
+            <th>Campaign Name</th>
+            <th>Campaign Description</th>
+            <th>End Date</th>
+            <th>Budget</th>
+            <th>Sponsor Username</th>
+        </tr>
+        {% for cname, desc, date, budget, flag, suname, status, per in DETAILS %}
+            {% if status=="DECLINE" %}
+            <tr>
+                <td>{{cname}}</td>
+                <td>{{desc}}</td>
+                <td>{{date}}</td>
+                <td>{{budget}}</td>
+                <td>{{suname}}</td>
+                {% if flag=="YES" %}
+                    <td>Campaign is flagged</td>
+                {% endif %}
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div>
+</div>
+</html>

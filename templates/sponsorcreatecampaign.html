@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Campaign</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/spon_style.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Sponsor Dashboard</h2>
+        <p style="text-align:right">
+            <a href="http://127.0.0.1:5000/sponsor_profile/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/sponsor_mycampaign/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">My Campaigns</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/sponsor_createcampaign/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Create Campaign</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/sponsor_requests/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Requests</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/logout">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+            </a>&emsp;
+        </p></p>
+</div>
+<div class="body">
+    <h2>Create Campaign</h2>
+    <form action="http://127.0.0.1:5000/sponsor_save_createcampaign/{{USER}}" method="post">
+        <table>
+        <tr><td>Campaign Name</td><td><input type="text" name="cname" placeholder="Campaign Name"></td></tr>
+        <tr><td>Description</td><td><input type="text" name="desc" placeholder="Description"></td></tr>
+        <tr><td>End Date</td><td><input type="text" name="edate" placeholder="End Date (YYYY-MM-DD)"></td></tr>
+        <tr><td>Budget</td><td><input type="text" name="budget" placeholder="Budget"></td></tr>
+        <tr><td>Visibility</td><td><select name="visi">
+        <option value="PUBLIC">PUBLIC</option>
+        <option value="PRIVATE">PRIVATE</option>
+        </select></td></tr>
+        <tr><td><button style="padding:5px;margin-left: 120%" type="submit">Submit</button></td></tr>
+        </table>
+    </form>
+</div></div>
+</html>

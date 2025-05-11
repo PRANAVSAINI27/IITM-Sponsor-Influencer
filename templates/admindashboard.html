@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/admin_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p>
+    <h2>Admin Dashboard</h2>
+    <p style="text-align:right">
+        <a href="http://127.0.0.1:5000/admin_profile/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/admin_influencers/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Influencers</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/admin_campaigns/{{USER}}" methods="post">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Campaigns</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/admin_sponsors/{{USER}}" methods="post">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Sponsors</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/logout">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+        </a>&emsp;
+    </p></p>
+</div>
+<div class="body">
+    <h2 style="text-align:center;">Profile</h2>
+    <p>Name&emsp;&emsp;: {{NAME}}</p>
+    <p>Username&nbsp;: {{ADMIN_USERNAME}}</p>
+    <p>Password&nbsp;: {{ADMIN_PASSWORD}}</p>
+</div>
+</div>
+</html>

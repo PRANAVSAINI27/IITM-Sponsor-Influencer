@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Sponsors</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/admin_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Admin Dashboard</h2>
+        <p style="text-align:right">
+            <a href="http://127.0.0.1:5000/admin_profile/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_influencers/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Influencers</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_campaigns/{{USER}}" methods="post">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Campaigns</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_sponsors/{{USER}}" methods="post">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Sponsors</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/logout">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+            </a>&emsp;
+        </p></p>
+</div>
+<div class="body">
+    <h2>SPONSORS</h2>
+    <table style="margin-left:8%;">
+        <tr>
+            <th>Company Name</th>
+            <th>Company Username</th>
+            <th>Email ID</th>
+            <th>Category</th>
+        </tr>
+        {% for name,uname, email, category, flag in RESULT %}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{uname}}</td>
+            <td>{{email}}</td>
+            <td>{{category}}</td>
+            <form id="form1" action="http://127.0.0.1:5000/admin_save_sponsors/{{USER}}" method="post">
+                {% if flag=="YES" %}
+                    <td><button style="padding:2px;" type="submit" name="rflag" value="{{uname}}">Unflag User</button></td>
+                {% else %}
+                    <td><button style="padding:2px;" type="submit" name="flag" value="{{uname}}">Flag User</button></td>
+                {% endif %}
+                <td><button style="padding:2px;" type="submit" name="del" value="{{uname}}">Delete User</button></td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</div>
+</html>

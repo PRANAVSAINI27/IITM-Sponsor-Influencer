@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Campaign</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/admin_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Admin Dashboard</h2>
+        <p style="text-align:right">
+            <a href="http://127.0.0.1:5000/admin_profile/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_influencers/{{USER}}">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Influencers</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_campaigns/{{USER}}" methods="post">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Campaigns</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/admin_sponsors/{{USER}}" methods="post">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Sponsors</button>
+            </a>&emsp;
+            <a href="http://127.0.0.1:5000/logout">
+                <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+            </a>&emsp;
+        </p></p>
+</div>
+<div class="body">
+    <h2>CAMPAIGNS</h2>
+    <table>
+        <tr>
+            <th>Campaign Name</th>
+            <th>Sponsor Username</th>
+            <th>Description</th>
+            <th>End Date</th>
+            <th>Budget</th>
+            <th>Visibility</th>
+            <th>Influencer Name</th>
+        </tr>
+        {% for name,suname, description, enddate, budget, visibility, influencername,flag in RESULT %}
+        <tr>
+            <td>{{name}}</td>
+            <td>{{suname}}</td>
+            <td>{{description}}</td>
+            <td>{{enddate}}</td>
+            <td>{{budget}}</td>
+            <td>{{visibility}}</td>
+            <form id="form1" action="http://127.0.0.1:5000/admin_save_campaigns/{{USER}}" method="post">
+                {% if influencername == "" %}
+                    <td>Not Assigned</td>
+                {% else %}
+                    <td>{{influencername}}</td>
+                {% endif %}
+                {% if flag=="YES" %}
+                    <td><button style="padding:2px;" type="submit" name="rflag" value="{{name}}">Unflag Campaign</button></td>
+                {% else %}
+                    <td><button style="padding:2px;" type="submit" name="flag" value="{{name}}">Flag Campaign</button></td>
+                {% endif %}
+                <td><button style="padding:2px;" type="submit" name="del" value="{{name}}">Delete Campaign</button></td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</div>
+</html>

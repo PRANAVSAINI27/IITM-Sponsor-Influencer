@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/spon_style.css')}}">
+</head>
+<div class="dash">
+    <div class="header">
+        <p><h2>Sponsor Dashboard</h2>
+            <p style="text-align:right">
+                <a href="http://127.0.0.1:5000/sponsor_profile/{{USER}}">
+                    <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+                </a>&emsp;
+                <a href="http://127.0.0.1:5000/sponsor_mycampaign/{{USER}}">
+                    <button style="color:black;background-color:white;padding:5px;" type="button">My Campaigns</button>
+                </a>&emsp;
+                <a href="http://127.0.0.1:5000/sponsor_createcampaign/{{USER}}">
+                    <button style="color:black;background-color:white;padding:5px;" type="button">Create Campaign</button>
+                </a>&emsp;
+                <a href="http://127.0.0.1:5000/sponsor_requests/{{USER}}">
+                    <button style="color:black;background-color:white;padding:5px;" type="button">Requests</button>
+                </a>&emsp;
+                <a href="http://127.0.0.1:5000/logout">
+                    <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+                </a>&emsp;
+            </p></p>
+    </div>
+<div class="body">
+    <h2>Update Sponsor</h2>
+    <form action="http://127.0.0.1:5000/save_update_sponsor/{{USER}}" method="post">
+        <table>
+        <tr><td>Company Name</td><td><input type="text" name="cname" value="{{Cname}}"></td></tr>
+        <tr><td>Company Username</td><td><input type="text" name="uname" value="{{Uname}}"></td></tr>
+        <tr><td>Email ID</td><td><input type="text" name="semail" value="{{Semail}}"></td></tr>
+        <tr><td>Password</td><td><input type="password" name="spassword" value="{{Spassword}}"></td></tr>
+        <tr><td>Industry</td><td><input type="text" name="industry" value="{{Ind}}"></td></tr>
+        </table>
+        {% if flag!="YES" %}
+            <button style="padding:5px;margin-left: 50%;margin-bottom: 20px;" type="submit">Submit</button>
+        {% else %}
+            <p style="margin-left: 46%;">User is Flagged</p>
+        {% endif %}
+    </form>
+</div>
+</div>
+</html>

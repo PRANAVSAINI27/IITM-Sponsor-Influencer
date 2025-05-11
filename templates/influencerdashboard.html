@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Influencer Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/inf_dash.css')}}">
+</head>
+<div class="dash">
+<div class="header">
+    <p><h2>Influencer Dashboard</h2></p>
+    <p style="text-align:right;">
+        <a href="http://127.0.0.1:5000/influencer_profile/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Profile</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/active_campaign/{{USER}}">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Active Campaigns</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/influencer_requests/{{USER}}" methods="post">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Requests</button>
+        </a>&emsp;
+        <a href="http://127.0.0.1:5000/logout">
+            <button style="color:black;background-color:white;padding:5px;" type="button">Logout</button>
+        </a>&emsp;
+    </p>
+</div>
+<div class="body">
+    <h2>Profile</h2>
+    {% if FLAG=="YES" %}
+    <p style="margin-left: 370px;">USER IS FLAGGED</p>
+    {% endif %}
+    <p>Name&emsp;&emsp;: {{FIRST_NAME}}&ensp;{{LAST_NAME}}</p>
+    <p>Username&nbsp;: {{USERNAME}}</p>
+    <p>Email ID&ensp;: {{EMAIL_ID}}</p>
+    <p>Password&nbsp;: {{PASSWORD}}</p>
+    <p>Category&ensp;: {{CATEGORY}}</p>
+    <p>Position&ensp;&nbsp;: {{POSITION}}</p>
+    <p>Reach&emsp;&ensp;: {{REACH}}</p>
+    {% if FLAG!="YES" %}
+    <a href="http://127.0.0.1:5000/update_influencer/{{USER}}">
+        <button style="background-color:#0088CB;margin-left: 370px;;margin-bottom:10px;" type="button">Click to Update
+            Profile
+        </button>
+    </a>
+    {% endif %}
+</div>
+</div>
+</html>

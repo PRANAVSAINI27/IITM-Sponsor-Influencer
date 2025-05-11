@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Influencer Registration</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='CSS/login.css')}}">
+</head>
+<body>
+<p><h2>INFLUENCER REGISTRATION</h2></p>
+<form action="http://127.0.0.1:5000/isuccess" method="post">
+    <p>First Name</p><p><input type="text" name="fname"></p>
+    <p>Last Name</p><p><input type="text" name="lname"></p>
+    <p>Email</p><p><input type="email" name="iemail"></p>
+    <p>Username</p><p><input type="text" name="uname"></p>
+    <p>Password</p><p><input type="password" name="ipassword"></p>
+    <p>Category</p><p><input type="text" name="category"></p>
+    <p>Position</p><p><input type="text" name="position"></p>
+    <p>Reach</p><p><input type="number" name="reach"></p>
+    <p><button style="padding:5px;" type="submit">Submit</button></p>
+</form>
+</body>
+</html>
